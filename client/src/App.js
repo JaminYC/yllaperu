@@ -1,5 +1,4 @@
 import React from 'react';
-import { evaluate } from 'mathjs';
 import Map from './components/Map';  // Asegúrate de que el componente Map esté correctamente importado
 
 function App() {
