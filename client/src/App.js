@@ -1,4 +1,5 @@
 import React from 'react';
+import { evaluate } from 'mathjs';
 
 function App() {
   let currentInput = '';
@@ -10,7 +11,7 @@ function App() {
 
   const calculate = () => {
     try {
-      currentInput = eval(currentInput).toString();
+      currentInput = evaluate(currentInput).toString();
       document.getElementById('display').value = currentInput;
     } catch (e) {
       document.getElementById('display').value = 'Error';
