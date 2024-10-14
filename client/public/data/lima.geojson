@@ -1,0 +1,21 @@
+{
+    "type": "Feature",
+    "properties": {
+      "name": "Lima",
+      "SectoresPrincipales": "Tecnología, Manufactura",
+      "ProyectosInnovadores": "Iniciativas de ciudades inteligentes, desarrollo de vehículos eléctricos",
+      "OportunidadesFuturas": "Expansión de infraestructuras verdes urbanas y desarrollo fintech"
+    },
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [-77.036871, -12.045338],
+          [-76.879642, -11.943984],
+          [-77.017281, -11.922455],
+          [-77.036871, -12.045338]
+        ]
+      ]
+    }
+  }
+  

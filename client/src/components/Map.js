@@ -4,6 +4,7 @@ import 'leaflet/dist/leaflet.css';
 
 const Map = () => {
   useEffect(() => {
+    // Inicializar el mapa centrado en Perú
     const map = L.map('map', {
       center: [-9.19, -75.0152], // Coordenadas de Perú
       zoom: 6,
@@ -14,12 +15,34 @@ const Map = () => {
       ]
     });
 
-    // Logica para agregar marcadores y centrar el mapa al clic en Lima
-    const limaMarker = L.marker([-12.0464, -77.0428]).addTo(map);
-    limaMarker.on('click', function() {
-      map.setView([-12.0464, -77.0428], 10); // Ajusta el zoom a Lima
-      // Aquí puedes añadir lógica adicional para mostrar datos de empresas
-    });
+    // Función para determinar el color basado en los sectores principales
+    const getColorBasedOnSector = (sector) => {
+      switch (sector) {
+        case 'Tecnología':
+          return 'blue';
+        case 'Minería':
+          return 'red';
+        case 'Agricultura':
+          return 'green';
+        default:
+          return 'gray';
+      }
+    };
+
+    // Cargar el archivo GeoJSON
+    fetch('/data/lima.geojson')
+      .then(response => response.json())
+      .then(data => {
+        const geoJsonLayer = L.geoJson(data, {
+          style: function (feature) {
+            return { color: getColorBasedOnSector(feature.properties.SectoresPrincipales) };
+          },
+          onEachFeature: function (feature, layer) {
+            layer.bindPopup(`<b>${feature.properties.name}</b><br/>Sectores Principales: ${feature.properties.SectoresPrincipales}`);
+          }
+        }).addTo(map);
+      })
+      .catch(error => console.error('Error loading the GeoJSON data: ', error));
 
     return () => map.remove();
   }, []);
