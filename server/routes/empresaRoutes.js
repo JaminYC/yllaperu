@@ -15,20 +15,14 @@ router.get('/', async (req, res) => {
 
 // Añadir una nueva empresa
 router.post('/', async (req, res) => {
-  const nuevaEmpresa = new Empresa({
-    nombre: req.body.nombre,
-    sector: req.body.sector,
-    direccion: req.body.direccion,
-    latitud: req.body.latitud,
-    longitud: req.body.longitud
-  });
-
-  try {
-    const empresaGuardada = await nuevaEmpresa.save();
-    res.status(201).json(empresaGuardada);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
+    const { nombre, sector, direccion, latitud, longitud } = req.body;
+    const nuevaEmpresa = new Empresa({ nombre, sector, direccion, latitud, longitud });
+    try {
+        await nuevaEmpresa.save();
+        res.status(201).json(nuevaEmpresa);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
 });
 
 module.exports = router;

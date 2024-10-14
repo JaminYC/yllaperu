@@ -18,7 +18,7 @@ const AddEmpresa = () => {
       longitud: parseFloat(longitud),
     };
 
-    fetch('/api/empresas', {
+    fetch('/api', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

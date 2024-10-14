@@ -1,13 +1,12 @@
+// Ejemplo de modelo de Empresa
 const mongoose = require('mongoose');
 
 const empresaSchema = new mongoose.Schema({
-  nombre: String,
-  sector: String,
-  direccion: String,
-  latitud: Number,
-  longitud: Number
+    nombre: { type: String, required: true },
+    sector: { type: String, required: true },
+    direccion: String,
+    latitud: Number,
+    longitud: Number
 });
 
-const Empresa = mongoose.model('Empresa', empresaSchema);
-
-module.exports = Empresa;
+module.exports = mongoose.model('Empresa', empresaSchema);

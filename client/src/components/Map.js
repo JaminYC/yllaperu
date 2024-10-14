@@ -14,8 +14,23 @@ const Map = () => {
         }),
       ]
     });
+        // Si la API está en el mismo dominio
+    fetch('/api', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+          nombre: 'Empresa Test',
+          sector: 'Tecnología',
+          direccion: '123 Calle Principal',
+          latitud: -12.046374,
+          longitud: -77.0427934
+      })
+    });
+
     // Fetch para obtener los datos de empresas desde tu backend
-    fetch('/api/empresas')
+    fetch('/api')
     .then(response => response.json())
     .then(empresas => {
       empresas.forEach(empresa => {
