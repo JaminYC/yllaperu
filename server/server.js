@@ -15,7 +15,7 @@ app.use(express.json());
 // Usar rutas
 app.use('/api', studentRoutes);
 // Usar rutas de empresas
-app.use('/api/empresas', empresaRoutes);
+app.use('/api', empresaRoutes);
 // API route
 app.get('/', (req, res) => {
   res.send('API de Ylla Perú funcionando');
