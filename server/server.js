@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const studentRoutes = require('./routes/studentRoutes');
+const empresaRoutes = require('./routes/empresaRoutes');
 const dotenv = require('dotenv');
 
 // Configure environment variables
@@ -13,7 +14,8 @@ app.use(express.json());
 
 // Usar rutas
 app.use('/api', studentRoutes);
-
+// Usar rutas de empresas
+app.use('/api/empresas', empresaRoutes);
 // API route
 app.get('/', (req, res) => {
   res.send('API de Ylla Perú funcionando');

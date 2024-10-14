@@ -14,7 +14,17 @@ const Map = () => {
         }),
       ]
     });
-
+    // Fetch para obtener los datos de empresas desde tu backend
+    fetch('/api/empresas')
+    .then(response => response.json())
+    .then(empresas => {
+      empresas.forEach(empresa => {
+        L.marker([empresa.latitud, empresa.longitud])
+          .addTo(map)
+          .bindPopup(`<b>${empresa.nombre}</b><br/>Sector: ${empresa.sector}`);
+      });
+    })
+    .catch(error => console.error('Error al cargar las empresas:', error));
     // Función para determinar el color basado en los sectores principales
     const getColorBasedOnSector = (sector) => {
       switch (sector) {
